@@ -7,6 +7,12 @@ import { RxCaretLeft } from 'react-icons/rx';
 import { RxCaretRight } from 'react-icons/rx';
 import { HiHome } from 'react-icons/hi';
 import { BiSearch } from 'react-icons/bi';
+import { FaUserAlt } from 'react-icons/fa';
+import { toast } from 'react-hot-toast';
+
+import { useAuthModal } from '../modals/hooks/useAuthModal';
+import { useSupabaseClient } from '@supabase/auth-helpers-react';
+import { useCurrentUser } from '../../../auth/hooks/useCurrentUser';
 
 import { IconButtonHelper } from '../helpers/IconButtonHelper';
 import { ButtonHelper } from '../helpers/ButtonHelper';
@@ -18,14 +24,27 @@ interface HeaderProps {
 
 function Header({ children, className }: HeaderProps) {
   const router = useRouter();
-  const handleLogout = () => {
-    //todo: handle user logout
+  const { onOpen } = useAuthModal();
+
+  const supabaseClient = useSupabaseClient();
+  const { user } = useCurrentUser();
+
+  const handleLogout = async () => {
+    const { error } = await supabaseClient.auth.signOut();
+    // todo: reset any playing songs
+    router.refresh();
+
+    if (error) {
+      toast.error(error.message);
+    } else {
+      toast.success('Logged out');
+    }
   };
 
   return (
     <div
       className={twMerge(
-        'h-fit bg-gradient-to-b from-amber-600 p-6',
+        'h-fit bg-gradient-to-b from-amber-500 p-6',
         className
       )}
     >
@@ -57,21 +76,40 @@ function Header({ children, className }: HeaderProps) {
         </div>
 
         <div className="flex justify-between items-center gap-x-4">
-          <>
-            <div>
+          {user ? (
+            <div className="flex gap-x-4 items-center">
               <ButtonHelper
-                className="bg-transparent text-neutral-300 font-medium"
-                onClick={() => {}}
+                className="bg-white px-6 py-2"
+                onClick={handleLogout}
               >
-                Sign up
+                Logout
+              </ButtonHelper>
+              <ButtonHelper
+                className="bg-white"
+                onClick={() => {
+                  router.push('/account');
+                }}
+              >
+                <FaUserAlt />
               </ButtonHelper>
             </div>
-            <div>
-              <ButtonHelper className="bg-white px-6 py-2" onClick={() => {}}>
-                Log in
-              </ButtonHelper>
-            </div>
-          </>
+          ) : (
+            <>
+              <div>
+                <ButtonHelper
+                  className="bg-transparent text-neutral-300 font-medium"
+                  onClick={onOpen}
+                >
+                  Sign up
+                </ButtonHelper>
+              </div>
+              <div>
+                <ButtonHelper className="bg-white px-6 py-2" onClick={onOpen}>
+                  Log in
+                </ButtonHelper>
+              </div>
+            </>
+          )}
         </div>
       </div>
       {children}

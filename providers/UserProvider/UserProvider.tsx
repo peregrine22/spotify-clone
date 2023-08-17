@@ -1,3 +1,5 @@
+'use client';
+
 import React, { ReactNode } from 'react';
 import { MyUserContextProvider } from '../../src/auth/hooks/useCurrentUser';
 
