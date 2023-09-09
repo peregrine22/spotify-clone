@@ -1,6 +1,6 @@
 import Stripe from 'stripe';
 
-export interface UserDetails {
+export type UserDetails = {
   id: string;
   firstName: string;
   lastName: string;
@@ -10,18 +10,18 @@ export interface UserDetails {
   };
   billingAddress?: Stripe.Address;
   paymentMethod?: Stripe.PaymentMethod;
-}
+};
 
-export interface Product {
+export type Product = {
   id: string;
   active?: boolean;
   name?: string;
   description?: string;
   image?: string;
   metadata?: Stripe.Metadata;
-}
+};
 
-export interface Price {
+export type Price = {
   id: string;
   productId: string;
   active?: boolean;
@@ -33,8 +33,9 @@ export interface Price {
   trialPeriodDays?: number | null;
   metadata?: Stripe.Metadata;
   products?: Product;
-}
-export interface Subscription {
+};
+
+export type Subscription = {
   id: string;
   userId: string;
   status?: Stripe.Subscription.Status;
@@ -51,4 +52,14 @@ export interface Subscription {
   trialStart?: string;
   trialEnd?: string;
   prices?: Price;
-}
+};
+
+export type Song = {
+  id: string;
+  userId: string;
+  author: string;
+  gemre: string;
+  title: string;
+  songPath: string;
+  imagePath: string;
+};

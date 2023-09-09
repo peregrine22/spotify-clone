@@ -2,14 +2,13 @@
 
 import React from 'react';
 
-import { useRouter } from 'next/navigation';
-
 import { Header } from '../../../components/Header';
 import { ListItem } from '../../../components/ListItem';
 import { useCurrentUser } from '../../../../auth/hooks/useCurrentUser';
 
+export const revalidate = 0;
+
 function HomePage() {
-  const router = useRouter();
   const { user } = useCurrentUser();
 
   return (
