@@ -10,7 +10,7 @@ import { BiSearch } from 'react-icons/bi';
 import { FaUserAlt } from 'react-icons/fa';
 import { toast } from 'react-hot-toast';
 
-import { useAuthModal } from '../modals/hooks/useAuthModal';
+import { useModal } from '../modals/AuthModal/hooks/useModal';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useCurrentUser } from '../../../auth/hooks/useCurrentUser';
 
@@ -24,7 +24,7 @@ interface HeaderProps {
 
 function Header({ children, className }: HeaderProps) {
   const router = useRouter();
-  const { onOpen } = useAuthModal();
+  const { onOpen } = useModal();
 
   const supabaseClient = useSupabaseClient();
   const { user } = useCurrentUser();

@@ -1,11 +1,24 @@
+'use client';
+
 import React, { useCallback } from 'react';
 import { TbPlaylist } from 'react-icons/tb';
 import { AiOutlinePlus } from 'react-icons/ai';
+import { useAuthModal } from '../../components/modals/AuthModal/hooks/useAuthModal';
+import { useCurrentUser } from '../../../auth/hooks/useCurrentUser';
+import { useUploadToLibraryModal } from '../../components/modals/UploadToLibraryModal/hooks/useUploadToLibraryModal';
 
 function Library() {
-  const onClick = useCallback(() => {
-    //todo: handle upload later
-  }, []);
+  const authModal = useAuthModal();
+  const uploadModal = useUploadToLibraryModal();
+  const { user } = useCurrentUser();
+
+  const handleOnClick = useCallback<() => void>(() => {
+    if (!user) {
+      return authModal.onOpen();
+    }
+    //todo: check for subscription
+    return uploadModal.onOpen();
+  }, [authModal, uploadModal, user]);
 
   return (
     <div className="flex flex-col">
@@ -15,7 +28,7 @@ function Library() {
           <p className="text-neutral-400 font-medium text-md">Your Library</p>
         </div>
         <AiOutlinePlus
-          onClick={onClick}
+          onClick={handleOnClick}
           className="text-neutral-400 cursor-pointer hover:text-white transition"
           size={20}
         />

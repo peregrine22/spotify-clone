@@ -1,18 +1,9 @@
-'use client';
-
-import React, { useCallback, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import {
-  useSessionContext,
-  useSupabaseClient
-} from '@supabase/auth-helpers-react';
-
-import { Modal } from '../Modal';
 import { Auth } from '@supabase/auth-ui-react';
+import React, { useEffect } from 'react';
+import { Modal } from '../Modal';
+import { useAuthModal } from '../AuthModal/hooks/useAuthModal';
 
-import { useAuthModal } from './hooks/useAuthModal';
-
-function AuthModal() {
+function SignUpModal() {
   const {
     isOpen,
     handleOnChangeModal,
@@ -32,8 +23,8 @@ function AuthModal() {
 
   return (
     <Modal
-      title="Welcome back!"
-      description="Login to your account"
+      title="Welcome to Spotify Clone!"
+      description="Create your account"
       isOpen={isOpen}
       onChange={handleOnChangeModal}
     >
@@ -48,4 +39,4 @@ function AuthModal() {
   );
 }
 
-export default AuthModal;
+export default SignUpModal;

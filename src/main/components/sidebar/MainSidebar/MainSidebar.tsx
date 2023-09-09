@@ -40,7 +40,7 @@ function MainSidebar({ children }: MainSidebarProps) {
 
   return (
     <div className="flex h-screen">
-      <div className="hidden md:flex flex-col gap-y-2 bg-black w-[300px] p-2">
+      <div className="hidden md:flex flex-col gap-y-2 bg-black w-[300px] pl-2 pt-2 pb-2">
         <Box>
           <div className="flex flex-col gap-y-4 px-5 py-4">
             {map(links, (item) => (
@@ -52,7 +52,9 @@ function MainSidebar({ children }: MainSidebarProps) {
           <Library />
         </Box>
       </div>
-      <main className="h-full flex-1 overflow-y-auto py-2">{children}</main>
+      <main className="h-full flex-1 overflow-y-auto p-2">
+        {children}
+      </main>
     </div>
   );
 }
