@@ -2,17 +2,18 @@
 
 import React from 'react';
 
+import { useCurrentUser } from '../../../../auth/hooks/useCurrentUser';
+import { useSongs } from '../../../hooks/useSongs';
+
 import { Header } from '../../../components/Header';
 import { ListItem } from '../../../components/ListItem';
-import { useCurrentUser } from '../../../../auth/hooks/useCurrentUser';
-
-import { useSongs } from '../../../hooks/useSongs';
+import { SongsList } from '../../../songs/SongsList';
 
 export const revalidate = 0;
 
 function HomePage() {
   const user = useCurrentUser();
-  const { songs } = useSongs();
+  const { songs, songsLoading, songsError } = useSongs();
 
   return (
     <div className="bg-neutral-900 rounded-lg h-full w-full overflow-hidden overflow-y-auto">
@@ -36,7 +37,13 @@ function HomePage() {
             Latest Releases
           </h1>
         </div>
-        <div>List of Songs</div>
+        {songsLoading ? (
+          <span>Loading...</span>
+        ) : (
+          <div>
+            <SongsList songs={songs} />
+          </div>
+        )}
       </div>
     </div>
   );

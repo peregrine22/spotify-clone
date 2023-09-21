@@ -60,6 +60,6 @@ export type Song = {
   author: string;
   gemre: string;
   title: string;
-  songPath: string;
-  imagePath: string;
+  song_path: string;
+  image_path: string;
 };
