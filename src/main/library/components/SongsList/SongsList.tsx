@@ -4,7 +4,7 @@ import React from 'react';
 import map from 'lodash/map';
 import isEmpty from 'lodash/isEmpty';
 
-import { Song } from '../../types';
+import { Song } from '../../../types';
 
 import { SongListItem } from '../SongListItem';
 

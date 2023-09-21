@@ -2,11 +2,12 @@
 
 import React from 'react';
 
-import { Song } from '../../types';
+import { Song } from '../../../types';
 
-import { useSongImage } from '../../hooks/useSongImage';
+import { useSongImage } from '../../../hooks/useSongImage';
 
 import Image from 'next/image';
+import { PlayButton } from '../PlayButton';
 
 interface SongListItemProps {
   song: Song;
@@ -35,7 +36,9 @@ function SongListItem({ song, onClick }: SongListItemProps) {
           By {song.author}
         </p>
       </div>
-      <div className="absolute bottom-24 right-5">Play button</div>
+      <div className="absolute bottom-24 right-5">
+        <PlayButton />
+      </div>
     </div>
   );
 }

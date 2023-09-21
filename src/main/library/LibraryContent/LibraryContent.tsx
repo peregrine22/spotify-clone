@@ -7,7 +7,7 @@ import { useAuthModal } from '../../components/modals/AuthModal/hooks/useAuthMod
 import { useCurrentUser } from '../../../auth/hooks/useCurrentUser';
 import { useUploadToLibraryModal } from '../../components/modals/UploadToLibraryModal/hooks/useUploadToLibraryModal';
 
-function Library() {
+function LibraryContent() {
   const authModal = useAuthModal();
   const uploadModal = useUploadToLibraryModal();
   const user = useCurrentUser();
@@ -38,4 +38,4 @@ function Library() {
   );
 }
 
-export default Library;
+export default LibraryContent;

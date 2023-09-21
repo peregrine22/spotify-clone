@@ -7,7 +7,7 @@ import { useSongs } from '../../../hooks/useSongs';
 
 import { Header } from '../../../components/Header';
 import { ListItem } from '../../../components/ListItem';
-import { SongsList } from '../../../songs/SongsList';
+import { SongsList } from '../../../library/components/SongsList';
 
 export const revalidate = 0;
 
