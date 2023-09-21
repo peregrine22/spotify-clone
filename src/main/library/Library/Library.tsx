@@ -10,7 +10,7 @@ import { useUploadToLibraryModal } from '../../components/modals/UploadToLibrary
 function Library() {
   const authModal = useAuthModal();
   const uploadModal = useUploadToLibraryModal();
-  const { user } = useCurrentUser();
+  const user = useCurrentUser();
 
   const handleOnClick = useCallback<() => void>(() => {
     if (!user) {

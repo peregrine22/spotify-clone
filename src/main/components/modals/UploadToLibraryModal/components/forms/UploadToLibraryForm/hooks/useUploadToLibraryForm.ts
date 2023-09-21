@@ -22,7 +22,7 @@ interface UploadToLibraryFormProps {
 function useUploadToLibraryForm({ onClose }: UploadToLibraryFormProps) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const { user } = useCurrentUser();
+  const user = useCurrentUser();
   const router = useRouter();
 
   const supabaseClient = useSupabaseClient();

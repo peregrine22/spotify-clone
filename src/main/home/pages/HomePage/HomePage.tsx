@@ -6,10 +6,13 @@ import { Header } from '../../../components/Header';
 import { ListItem } from '../../../components/ListItem';
 import { useCurrentUser } from '../../../../auth/hooks/useCurrentUser';
 
+import { useSongs } from '../../../hooks/useSongs';
+
 export const revalidate = 0;
 
 function HomePage() {
-  const { user } = useCurrentUser();
+  const user = useCurrentUser();
+  const { songs } = useSongs();
 
   return (
     <div className="bg-neutral-900 rounded-lg h-full w-full overflow-hidden overflow-y-auto">

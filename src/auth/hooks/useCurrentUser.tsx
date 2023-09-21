@@ -98,5 +98,5 @@ export const useCurrentUser = () => {
     );
   }
 
-  return context;
+  return context.user;
 };

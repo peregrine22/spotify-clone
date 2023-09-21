@@ -27,7 +27,7 @@ function Header({ children, className }: HeaderProps) {
   const { onOpen } = useModal();
 
   const supabaseClient = useSupabaseClient();
-  const { user } = useCurrentUser();
+  const user = useCurrentUser();
 
   const handleLogout = async () => {
     const { error } = await supabaseClient.auth.signOut();
